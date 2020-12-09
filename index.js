@@ -1,17 +1,18 @@
-const inquirer = requier("inquirer");
+const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown");
+const { prompt } = require("inquirer");
 
 
 
 // array of questions for user
 const questions = [
 {
-        type: "input"
-        name: "title"
+        type: "input",
+        name: "title",
         message: "Enter project title here"
   
-    }
+    },
     {
         type: "input",
         name: "description",
@@ -46,13 +47,13 @@ const questions = [
             "none"
         ]
   
-    }
+    },
     {
         type: "input", 
         name: "GitHub",
         message:"enter your Github link and profile"
   
-    }
+    },
     {
         type: "input", 
         name: "questions",
@@ -75,7 +76,7 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
-    prompt(questions).then(answer => {
+    prompt(questions).then(answers => {
         const response = generateMarkdown(answer);
         fs.writeFile("./README.md, response");
     })
